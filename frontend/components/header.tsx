@@ -1,12 +1,16 @@
 "use client"
 
 import Link from "next/link"
-import { ShoppingCart, User, Menu, X } from "lucide-react"
+import { ShoppingCart, User, Menu, X, Heart, BarChart3 } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { useAuth } from "@/lib/auth-context"
+import { useCart } from "@/lib/cart-context"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const { user, logout } = useAuth()
+  const { items } = useCart()
 
   return (
     <header className="bg-primary text-primary-foreground sticky top-0 z-50 shadow-md">
@@ -28,25 +32,53 @@ export default function Header() {
             <Link href="/products" className="hover:opacity-80 transition">
               Produtos
             </Link>
-            <Link href="/about" className="hover:opacity-80 transition">
-              Sobre
+            <Link href="/compare" className="hover:opacity-80 transition">
+              Comparar
             </Link>
+            {user?.isAdmin && (
+              <Link href="/admin" className="hover:opacity-80 transition font-bold text-accent">
+                Admin
+              </Link>
+            )}
           </nav>
 
           {/* Right Actions */}
           <div className="flex items-center gap-4">
-            <Link href="/cart" className="relative hover:opacity-80 transition">
+            <Link href="/favorites" className="relative hover:opacity-80 transition" title="Favoritos">
+              <Heart size={24} />
+            </Link>
+            <Link href="/compare" className="relative hover:opacity-80 transition hidden sm:block" title="Comparar">
+              <BarChart3 size={24} />
+            </Link>
+            <Link href="/cart" className="relative hover:opacity-80 transition" title="Carrinho">
               <ShoppingCart size={24} />
-              <span className="absolute -top-2 -right-2 bg-accent text-primary rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
-                0
-              </span>
+              {items.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-accent text-primary rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
+                  {items.length}
+                </span>
+              )}
             </Link>
-            <Link href="/login">
-              <Button variant="secondary" size="sm">
-                <User size={18} className="mr-2" />
-                Login
-              </Button>
-            </Link>
+
+            {user ? (
+              <div className="flex items-center gap-2">
+                <Link href="/dashboard" className="hidden sm:block">
+                  <Button variant="secondary" size="sm" className="text-xs sm:text-sm">
+                    <User size={18} className="mr-2" />
+                    {user.name}
+                  </Button>
+                </Link>
+                <Button variant="secondary" size="sm" onClick={logout} className="text-xs sm:text-sm">
+                  Sair
+                </Button>
+              </div>
+            ) : (
+              <Link href="/login">
+                <Button variant="secondary" size="sm">
+                  <User size={18} className="mr-2" />
+                  Login
+                </Button>
+              </Link>
+            )}
 
             {/* Mobile Menu Button */}
             <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
@@ -64,9 +96,22 @@ export default function Header() {
             <Link href="/products" className="block py-2 hover:opacity-80">
               Produtos
             </Link>
-            <Link href="/about" className="block py-2 hover:opacity-80">
-              Sobre
+            <Link href="/compare" className="block py-2 hover:opacity-80">
+              Comparar
             </Link>
+            <Link href="/favorites" className="block py-2 hover:opacity-80">
+              Favoritos
+            </Link>
+            {user && (
+              <Link href="/dashboard" className="block py-2 hover:opacity-80">
+                Dashboard
+              </Link>
+            )}
+            {user?.isAdmin && (
+              <Link href="/admin" className="block py-2 hover:opacity-80 font-bold text-accent">
+                Admin
+              </Link>
+            )}
           </nav>
         )}
       </div>

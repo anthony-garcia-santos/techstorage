@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo } from "react"
-import { useProducts } from "@/lib/products-context"
+import { useProducts } from "@/lib/contextos/produtos-context"
 import ProductCard from "@/components/product-card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"

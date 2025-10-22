@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Trash2, Plus, Minus, ShoppingCart, ArrowRight } from "lucide-react"
-import { useCart } from "@/lib/cart-context"
+import { useCart } from "@/lib/contextos/carrinho-context"
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, total } = useCart()
@@ -23,7 +23,7 @@ export default function CartPage() {
             <ShoppingCart size={48} className="mx-auto text-muted-foreground mb-4 opacity-50" />
             <h2 className="text-2xl font-bold mb-2">Carrinho vazio</h2>
             <p className="text-muted-foreground mb-6">Adicione produtos para começar a comprar</p>
-            <Link href="/products">
+            <Link href="/(loja)/produtos">
               <Button>Continuar Comprando</Button>
             </Link>
           </Card>
@@ -41,7 +41,7 @@ export default function CartPage() {
                         className="w-24 h-24 object-cover rounded-lg bg-muted"
                       />
                       <div className="flex-1">
-                        <Link href={`/product/${item.id}`}>
+                        <Link href={`/(loja)/produto/${item.id}`}>
                           <h3 className="font-bold text-lg mb-2 hover:text-primary">{item.name}</h3>
                         </Link>
                         <p className="text-primary font-bold text-lg mb-4">${item.price}</p>
@@ -100,13 +100,13 @@ export default function CartPage() {
                   <span className="font-bold text-lg">Total</span>
                   <span className="font-bold text-2xl text-primary">${finalTotal.toFixed(2)}</span>
                 </div>
-                <Link href="/checkout">
+                <Link href="/(loja)/checkout">
                   <Button className="w-full mb-3">
                     Ir para Checkout
                     <ArrowRight size={18} className="ml-2" />
                   </Button>
                 </Link>
-                <Link href="/products">
+                <Link href="/(loja)/produtos">
                   <Button variant="outline" className="w-full bg-transparent">
                     Continuar Comprando
                   </Button>

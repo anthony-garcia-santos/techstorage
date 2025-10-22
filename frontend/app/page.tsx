@@ -4,47 +4,12 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Star, Zap, Truck, Shield } from "lucide-react"
 import ProductCard from "@/components/product-card"
-
-const featuredProducts = [
-  {
-    id: 1,
-    name: "iPhone 15 Pro",
-    price: 1299,
-    image: "/iphone-15-pro-smartphone.jpg",
-    rating: 4.8,
-    reviews: 324,
-    category: "phones",
-  },
-  {
-    id: 2,
-    name: 'MacBook Pro 16"',
-    price: 2499,
-    image: "/macbook-pro-laptop.jpg",
-    rating: 4.9,
-    reviews: 512,
-    category: "laptops",
-  },
-  {
-    id: 3,
-    name: "AirPods Pro Max",
-    price: 549,
-    image: "/airpods-pro-max-headphones.jpg",
-    rating: 4.7,
-    reviews: 289,
-    category: "accessories",
-  },
-  {
-    id: 4,
-    name: "iPad Air",
-    price: 799,
-    image: "/ipad-air-tablet.jpg",
-    rating: 4.6,
-    reviews: 198,
-    category: "tablets",
-  },
-]
+import { useProducts } from "@/lib/products-context"
 
 export default function Home() {
+  const { products } = useProducts()
+  const featuredProducts = products.filter((p) => p.featured)
+
   return (
     <div className="w-full">
       {/* Hero Section */}

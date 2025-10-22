@@ -5,8 +5,8 @@ import { use } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Star, ShoppingCart, Heart, Share2, Truck, Shield, RotateCcw } from "lucide-react"
-import { useProducts } from "@/lib/products-context"
-import { useCart } from "@/lib/cart-context"
+import { useProducts } from "@/lib/contextos/produtos-context"
+import { useCart } from "@/lib/contextos/carrinho-context"
 import ReviewSection from "@/components/review-section"
 
 export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {

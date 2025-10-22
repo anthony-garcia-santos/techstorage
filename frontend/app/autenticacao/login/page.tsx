@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Mail, Lock, Eye, EyeOff } from "lucide-react"
-import { useAuth } from "@/lib/auth-context"
+import { useAuth } from "@/lib/contextos/autenticacao-context"
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
@@ -133,7 +133,7 @@ export default function LoginPage() {
           {/* Sign Up Link */}
           <p className="text-center text-sm text-muted-foreground mt-6">
             Não tem conta?{" "}
-            <Link href="/signup" className="text-primary font-medium hover:underline">
+            <Link href="/(autenticacao)/cadastro" className="text-primary font-medium hover:underline">
               Criar conta
             </Link>
           </p>

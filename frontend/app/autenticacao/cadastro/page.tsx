@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Mail, Lock, User, Eye, EyeOff } from "lucide-react"
-import { useAuth } from "@/lib/auth-context"
+import { useAuth } from "@/lib/contextos/autenticacao-context"
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
