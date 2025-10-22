@@ -47,7 +47,11 @@ export default function Header() {
             <Link href="/favorites" className="relative hover:opacity-80 transition" title="Favoritos">
               <Heart size={24} />
             </Link>
-            <Link href="/compare" className="relative hover:opacity-80 transition hidden sm:block" title="Comparar">
+            <Link
+              href="/compare"
+              className="relative hover:opacity-80 transition hidden sm:block"
+              title="Comparar"
+            >
               <BarChart3 size={24} />
             </Link>
             <Link href="/cart" className="relative hover:opacity-80 transition" title="Carrinho">
@@ -61,7 +65,7 @@ export default function Header() {
 
             {user ? (
               <div className="flex items-center gap-2">
-                <Link href="/dashboard" className="hidden sm:block">
+                <Link href="/orders" className="hidden sm:block">
                   <Button variant="secondary" size="sm" className="text-xs sm:text-sm">
                     <User size={18} className="mr-2" />
                     {user.name}
@@ -93,7 +97,7 @@ export default function Header() {
             <Link href="/" className="block py-2 hover:opacity-80">
               Home
             </Link>
-            <Link href="/products" className="block py-2 hover:opacity-80">
+            <Link href="/product" className="block py-2 hover:opacity-80">
               Produtos
             </Link>
             <Link href="/compare" className="block py-2 hover:opacity-80">
@@ -103,7 +107,7 @@ export default function Header() {
               Favoritos
             </Link>
             {user && (
-              <Link href="/dashboard" className="block py-2 hover:opacity-80">
+              <Link href="/orders" className="block py-2 hover:opacity-80">
                 Dashboard
               </Link>
             )}
